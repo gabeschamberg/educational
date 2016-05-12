@@ -12,7 +12,7 @@ def read_from_arduino(duration=5,port=None,baud_rate=115200):
             read_from_arduino(duration=10,port=\"/dev/tty.usbserial-ABCDEFG\")
             """)
 
-    arduino = arduinoserial.SerialPort('/dev/tty.usbserial-ADAOJEPFJ', 115200)
+    arduino = arduinoserial.SerialPort(port, 115200)
     start = time.time()
     signal = []
     while time.time()-start < duration:
@@ -20,6 +20,7 @@ def read_from_arduino(duration=5,port=None,baud_rate=115200):
             signal.append(float(arduino.read_until('\n')))
         except:
             pass
+    signal = np.asarray(signal,float)
     return signal
 
 def read_from_file(filename='data.txt'):
