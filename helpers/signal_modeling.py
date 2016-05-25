@@ -1,3 +1,6 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
 def gen_data(model='polynomial',model_params=[2,3],noise='gaussian',noise_param=1,start=-10,stop=10,step=1,plot=True):
     x = np.arange(start,stop,step)
 

@@ -24,7 +24,6 @@ class ToneGenerator(object):
         xs = numpy.arange(self.buffer_offset,
                           self.buffer_offset + self.frames_per_buffer)
         out = self.amplitude * numpy.sin(xs * omega)
-        self.buffer_offset += self.frames_per_buffer
         return out
 
     def callback(self, in_data, frame_count, time_info, status):
@@ -44,7 +43,8 @@ class ToneGenerator(object):
             data += self.sinewave(440.00).astype(numpy.float32)
         if self.notes[6]:
             data += self.sinewave(493.88).astype(numpy.float32)
-
+        data = data
+        self.buffer_offset += self.frames_per_buffer
         return (data.tostring(), pyaudio.paContinue)
 
     def update_frequency(self, frequency):
