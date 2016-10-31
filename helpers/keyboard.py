@@ -9,7 +9,6 @@ import pyaudio
 import math
 
 
-
 class ToneGenerator(object):
 
     def __init__(self, samplerate=44100, frames_per_buffer=2205):
